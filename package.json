@@ -1,0 +1,17 @@
+{
+  "name": "nodeusermanager",
+  "version": "1.0.0",
+  "description": "A simple user manager with little styling",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jared Jacobson",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "pug": "^2.0.3",
+    "requirejs": "^2.3.5"
+  }
+}

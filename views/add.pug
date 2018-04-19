@@ -1,0 +1,14 @@
+extends layouts/layout
+
+block bodyContent
+    form(method="POST", action=action)
+        div
+            label(for="name") Name
+            input(type="text", autocomplete="name", id="name", name="name", required)
+        div
+            label(for="email") Email
+            input(type="email", autocomplete="email", id="email", name="email", required)
+        div
+            label(for="age") Age
+            input(type="number", min=0, max=123, id="age", name="age", required)
+        input(type="submit", value="SUBMIT")

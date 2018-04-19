@@ -1,0 +1,25 @@
+extends layouts/layout
+
+block bodyContent
+    h1 User Manager Application
+    table
+        tr
+            th Name
+            th Email
+            th Age
+            th id
+            th Edit
+            th Delete
+        each user in users
+            tr
+                td= user.name
+                td= user.email
+                td= user.age
+                td= user.id
+                td
+                    a(href=`/edit/${user.id}`) edit
+                td
+                    a(href=`/delete/${user.id}`) delete
+    button
+        a(href='/add') + ADD USER +
+
