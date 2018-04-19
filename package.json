@@ -1,7 +1,7 @@
 {
-  "name": "nodeusermanager",
+  "name": "mongousermanager",
   "version": "1.0.0",
-  "description": "A simple user manager with little styling",
+  "description": "A simple user manager with little styling, that implements mongo for the database.",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
