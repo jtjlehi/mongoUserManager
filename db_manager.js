@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-class dbManager {
+class DbManager {
     constructor() {
         this.userSchema = new Schema({
             userName: {
@@ -34,4 +34,20 @@ class dbManager {
     parse() {
         // returns a promise with all of the users or error
     }
+    // private
+    _connect() {
+        // returns a promise for when the server connects
+        return mongoose.connect('mongodb://localhost/users');
+    }
 }
+
+const dbManager = new DbManager();
+dbManager._connect().then(() => {}, (err) => {
+    throw 'did not connect to db';
+})
+.then(() => {
+    mongoose.disconnect();
+})
+.catch((err) => {
+    console.log(err)
+});
