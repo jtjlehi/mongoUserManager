@@ -31,8 +31,15 @@ class DbManager {
     deleteUser(userID) {
         // returns a promise with either a success or error
     }
-    parse() {
+    parse(sortObj) {
         // returns a promise with all of the users or error
+        return this._connect()
+            .then(() => this.User.find({}))
+            .then((users) => users.sort(sortObj))
+            .then((users) => {
+                mongoose.disconnect();
+                return users;
+            })
     }
     // private
     _connect() {
@@ -42,12 +49,14 @@ class DbManager {
 }
 
 const dbManager = new DbManager();
-dbManager._connect().then(() => {}, (err) => {
-    throw 'did not connect to db';
-})
-.then(() => {
-    mongoose.disconnect();
-})
-.catch((err) => {
-    console.log(err)
-});
+// dbManager._connect().then(() => {}, (err) => {
+//     throw 'did not connect to db';
+// })
+// .then(() => {
+//     mongoose.disconnect();
+// })
+// .catch((err) => {
+//     console.log(err)
+// });
+dbManager.parse({})
+.then((users) => {console.log(users)});
