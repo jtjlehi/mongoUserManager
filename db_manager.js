@@ -40,8 +40,9 @@ class DbManager {
     parse(sortObj) {
         // returns a promise with all of the users or error
         return this._connect()
-            .then(() => this.User.find({}))
-            .then((users) => users.sort(sortObj))
+            .then(() => this.User.find({})
+                .sort(sortObj)
+            )
             .then((users) => {
                 mongoose.disconnect();
                 return users;
@@ -64,13 +65,13 @@ const dbManager = new DbManager();
 // .catch((err) => {
 //     console.log(err)
 // });
-// dbManager.parse('-firstName')
+// dbManager.addUser({userName: 'jtjlehi', email: 'jtjlehi@gmail.com', age: 6})
+// .then(success => {
+//     console.log(success);
+// })
+// .catch(err => {
+//     console.log('error has occurred');
+//     console.log(err);
+// })
+// .then(() => dbManager.parse({age: 1}))
 // .then((users) => {console.log(users)});
-dbManager.addUser({userName: 'jtjlehi', email: 'jtjlehi@gmail.com', age: 7})
-.then(success => {
-    console.log(success);
-})
-.catch(err => {
-    console.log('error has occurred');
-    console.log(err);
-});
