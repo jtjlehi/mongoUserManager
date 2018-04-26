@@ -24,6 +24,12 @@ class DbManager {
     // public methods
     addUser(userObj) {
         // returns a promise with the either a success message or an error message
+        return this._connect()
+        .then(mongoose => this.User.create(userObj))
+        .then((newUser, err) => {
+            if (err) throw err;
+            return `added new user: ${newUser}`;
+        })
     }
     editUser(userID, property, value) {
         // returns a promise with either a success or error
@@ -58,5 +64,13 @@ const dbManager = new DbManager();
 // .catch((err) => {
 //     console.log(err)
 // });
-dbManager.parse({})
-.then((users) => {console.log(users)});
+// dbManager.parse('-firstName')
+// .then((users) => {console.log(users)});
+dbManager.addUser({userName: 'jtjlehi', email: 'jtjlehi@gmail.com', age: 7})
+.then(success => {
+    console.log(success);
+})
+.catch(err => {
+    console.log('error has occurred');
+    console.log(err);
+});
