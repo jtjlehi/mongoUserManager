@@ -91,11 +91,11 @@ class DbManager {
     parse(sortObj) {
         // returns a promise with all of the users or error
         return this._connect()
-            .then(() => this.User.find({}).sort(sortObj))
-            .then((users) => {
-                mongoose.disconnect();
-                return users;
-            })
+        .then(() => this.User.find({}).sort(sortObj))
+        .then((users) => {
+            mongoose.disconnect();
+            return users;
+        })
     }
     // private
     _connect() {
@@ -107,7 +107,10 @@ class DbManager {
         // returns a promise with the userId cast to an ObjectId, or throws an error
         return this._connect()
         .then(() => {
+            userId = typeof userId === 'string' ? userId 
+                : typeof userId.toHexString() == 'string' ? userId.toHexString() : undefined;
             // check if the userID is the correct length, and cast it to ObjectId
+            if (!userId) throw new Error('User ID must be a string or a ObjectId');
             if (userId.length !== 24) throw new Error('User ID isn\'t the right length');
             return mongoose.Types.ObjectId(userId);
         })
@@ -136,3 +139,5 @@ const dbManager = new DbManager();
 // .then((users) => {console.log(users)});
 // dbManager.editUser('5ae4d8272b0e69d0dbee62e7', {userName: 'jtjlehi'});
 // dbManager.deleteUser('5ae4f00ae5bdead779d8625b');
+
+module.exports = dbManager;
