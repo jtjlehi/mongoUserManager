@@ -30,6 +30,10 @@ class DbManager {
             if (err) throw err;
             return `added new user: ${newUser}`;
         })
+        .then(message => {
+            mongoose.disconnect()
+            return message;
+        })
     }
     editUser(userID, property, value) {
         // returns a promise with either a success or error
@@ -65,10 +69,10 @@ const dbManager = new DbManager();
 // .catch((err) => {
 //     console.log(err)
 // });
-// dbManager.addUser({userName: 'jtjlehi', email: 'jtjlehi@gmail.com', age: 6})
-// .then(success => {
-//     console.log(success);
-// })
+dbManager.addUser({userName: 'jtjlehi', email: 'jtjlehi@gmail.com', age: 6})
+.then(success => {
+    console.log(success);
+})
 // .catch(err => {
 //     console.log('error has occurred');
 //     console.log(err);
