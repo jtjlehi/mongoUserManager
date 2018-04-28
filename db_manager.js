@@ -37,14 +37,9 @@ class DbManager {
     }
     editUser(userID, updateObj) {
         // returns a promise with either a success or error
-        return this._connect()
-        .then(() => {
-            // check if the userID is the correct length, and cast it to ObjectId
-            if (userID.length !== 24) throw new Error('User ID isn\'t the right length');
-            const uid = mongoose.Types.ObjectId(userID);
-            // search for user by id
-            return this.User.findById(uid);
-        })
+        return this._getObjectId(userID)
+        // find the user using the userId cast to objectId
+        .then(uid => this.User.findById(uid))
         .then((user) => {
             if (!user) throw new Error('user not found');
             // reference to old user json for comparison
@@ -86,6 +81,16 @@ class DbManager {
         // returns a promise for when the server connects
         return mongoose.connect('mongodb://localhost/users');
     }
+    _getObjectId(userId) {
+        // connects to the database
+        // returns a promise with the userId cast to an ObjectId, or throws an error
+        return this._connect()
+        .then(() => {
+            // check if the userID is the correct length, and cast it to ObjectId
+            if (userId.length !== 24) throw new Error('User ID isn\'t the right length');
+            return mongoose.Types.ObjectId(userId);
+        })
+    }
 }
 
 const dbManager = new DbManager();
@@ -108,4 +113,4 @@ const dbManager = new DbManager();
 // })
 // .then(() => dbManager.parse({age: 1}))
 // .then((users) => {console.log(users)});
-dbManager.editUser('5ae4d8272b0e69d0dbee62e7', {userName: 'jtjlehi'});
+// dbManager.editUser('5ae4d8272b0e69d0dbee62e7', {userName: 'jtjlehi'});
