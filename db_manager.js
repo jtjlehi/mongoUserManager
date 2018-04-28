@@ -66,6 +66,27 @@ class DbManager {
     }
     deleteUser(userID) {
         // returns a promise with either a success or error
+        return this._getObjectId(userID)
+        .then(uid => new Promise((resolve, reject) => {
+            // find the user by the uid and remove, then do the callback.
+            this.User.findByIdAndRemove(uid, (err, user) => {
+                // disconnect first
+                mongoose.disconnect();
+                // check if the user was found
+                if (!user) reject(new Error('User not found'));
+                // check if any other errors occurred
+                if (err) reject(err);
+                // send user
+                resolve(user);
+            })
+        }))
+        .catch(err => {
+            // log error on backend
+            console.log(err);
+            // send error for user feedback.
+            throw err;
+        })
+            
     }
     parse(sortObj) {
         // returns a promise with all of the users or error
@@ -114,3 +135,4 @@ const dbManager = new DbManager();
 // .then(() => dbManager.parse({age: 1}))
 // .then((users) => {console.log(users)});
 // dbManager.editUser('5ae4d8272b0e69d0dbee62e7', {userName: 'jtjlehi'});
+// dbManager.deleteUser('5ae4f00ae5bdead779d8625b');
