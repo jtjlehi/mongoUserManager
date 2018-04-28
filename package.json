@@ -4,6 +4,7 @@
   "description": "A simple user manager with little styling, that implements mongo for the database.",
   "main": "main.js",
   "scripts": {
+    "clearDB": "node clear_db.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jared Jacobson",
@@ -12,6 +13,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "mongoose": "^5.0.15",
+    "npm": "^6.0.0",
     "pug": "^2.0.3",
     "requirejs": "^2.3.5"
   }
