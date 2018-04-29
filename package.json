@@ -4,7 +4,7 @@
   "description": "A simple user manager with little styling, that implements mongo for the database.",
   "main": "main.js",
   "scripts": {
-    "start": "npm run fillDB && node main.js",
+    "start": "npm i && npm run fillDB && node main.js",
     "devServe": "npm run fillDB && nodemon main.js",
     "clearDB": "mongo users --eval 'db.dropDatabase();'",
     "fillDB": "npm run clearDB && node fill_db.js",
