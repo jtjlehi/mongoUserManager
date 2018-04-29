@@ -1,22 +1,13 @@
-const dataManager = require('./data_manager');
+const dbManager = require('./db_manager');
 
 module.exports = function(app) {
     app.get('/edit/:user_id', (req, res) => {
-        dataManager.parse()
-        .then((users) => users.map((user) => user.userData))
-        .then(users => {
-            const user = users.find(user => {
-                return user.id == req.params.user_id;
-            });
-            return user;
-        })
+        dbManager.findUser(req.params.user_id)
         .then(user => {
-            if (user === undefined) {
-                res.end('User not found');
-            }
-            else {
-                res.render('edit', user);
-            }
-        });
+            res.render('edit', user);
+        })
+        .catch(err => {
+            res.render('message', {message: err});
+        })
     });
 }
