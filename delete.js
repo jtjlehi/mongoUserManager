@@ -1,11 +1,13 @@
-const dataManager = require('./data_manager');
+const dbManager = require('./db_manager');
 
 module.exports = function(app) {
     app.get('/delete/:user_id', (req, res) => {
-        dataManager.replaceUser(req.params.user_id, '')
-        .then(res.render('message', {message: 'deleted user'}))
+        dbManager.deleteUser(req.params.user_id)
+        .then(user => {
+            res.render('message', {message: `deleted ${user.userName}. Return home to see.`});
+        })
         .catch(err => {
-            res.render('message', {message: err.message});
+            res.render('message', {message: err});
         })
     })
 }
