@@ -9,7 +9,7 @@ module.exports = function(app) {
         }
         dbManager.editUser(req.params.user_id, updatedUser)
         .then(user => {
-            if (user) res.render('message', {message: 'Edited user. Return home to view.'})
+            if (user) res.render('message', {message: `Edited ${user.userName}. Return home to view.`})
         })
         .catch(err => {
             res.render('message', {message: err});
