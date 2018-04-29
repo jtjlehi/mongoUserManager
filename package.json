@@ -4,9 +4,9 @@
   "description": "A simple user manager with little styling, that implements mongo for the database.",
   "main": "main.js",
   "scripts": {
-    "devServe": "nodemon main.js",
-    "clearDB": "node clear_db.js",
-    "fillDB": "node clear_db.js && node fill_db.js",
+    "devServe": "npm run fillDB && nodemon main.js",
+    "clearDB": "mongo users --eval 'db.dropDatabase();'",
+    "fillDB": "npm run clearDB && node fill_db.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jared Jacobson",
