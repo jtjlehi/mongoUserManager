@@ -1,10 +1,18 @@
-const dataManager = require('./data_manager');
+const dbManager = require('./db_manager');
 
 module.exports = function(app) {
     app.post('/edit/:user_id', (req, res) => {
-        const updatedUser = dataManager.generateUser(req.body.name, req.body.email, req.body.age);
-        dataManager.replaceUser(req.params.user_id, `\n${JSON.stringify(updatedUser)}`)
-        .then(res.render('message', {message: 'User edited'}))
-        .catch(err, res.render('message', {message: err.message !== undefined ? err.message : err}));
+        const updatedUser = {
+            userName: req.body.name,
+            email: req.body.email,
+            age: req.body.age
+        }
+        dbManager.editUser(req.params.user_id, updatedUser)
+        .then(user => {
+            if (user) res.render('message', {message: 'Edited user. Return home to view.'})
+        })
+        .catch(err => {
+            res.render('message', {message: err});
+        })
     });
 }
