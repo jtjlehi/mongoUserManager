@@ -28,11 +28,11 @@ class DbManager {
         .then(mongoose => this.User.create(userObj))
         .then((newUser, err) => {
             if (err) throw err;
-            return `added new user: ${newUser}`;
+            return newUser;
         })
-        .then(message => {
+        .then(newUser => {
             mongoose.disconnect()
-            return message;
+            return newUser;
         })
     }
     editUser(userID, updateObj) {
