@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "clearDB": "node clear_db.js",
+    "fillDB": "node clear_db.js && node fill_db.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jared Jacobson",
