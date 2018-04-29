@@ -1,6 +1,6 @@
 const dbManager = require('./db_manager');
 
-function clearDb() {
+module.exports = function() {
     return dbManager.parse()
     .then(users => {
         console.log('users: ', users.length)
@@ -8,14 +8,14 @@ function clearDb() {
     })
     .then(users => {
         if (users.length === 0) {
-            return dbManager.parse()
-            .then(users => {console.log('clear complete')});
+            console.log('clear complete');
+            return 'clear complete';
+        } else {
+            return dbManager.deleteUser(users[0]._id)
+            .then(user => module.exports());
         }
-        console.log('user to be deleted: ', users[0].id);
-        console.log(typeof users[0].id);
-        return dbManager.deleteUser(users[0]._id)
-        .then(user => clearDb());
     })
 }
 
-clearDb();
+module.exports()
+
