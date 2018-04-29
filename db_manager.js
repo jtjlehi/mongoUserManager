@@ -24,6 +24,7 @@ class DbManager {
                 required: true
             }
         });
+        this.userSchema.index({firstName: 'text', lastName: 'text', email: 'text'});
         this.User = mongoose.model('User', this.userSchema);
     }
     // public methods
@@ -105,10 +106,11 @@ class DbManager {
             return user;
         });
     }
-    parse(sortObj) {
+    parse(sortObj, searchObj) {
         // returns a promise with all of the users or error
+        searchObj = searchObj ? searchObj : {};
         return this._connect()
-        .then(() => this.User.find({}).sort(sortObj))
+        .then(() => this.User.find(searchObj).sort(sortObj))
         .then((users) => {
             mongoose.disconnect();
             return users;
