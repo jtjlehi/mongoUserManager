@@ -88,6 +88,18 @@ class DbManager {
         })
             
     }
+    findUser(userId) {
+        return this._getObjectId(userId)
+        .then((uid) => this.User.findById(uid))
+        .catch(err => {
+            console.log(err);
+            throw err;
+        }) 
+        .then(user => {
+            mongoose.disconnect();
+            return user;
+        });
+    }
     parse(sortObj) {
         // returns a promise with all of the users or error
         return this._connect()
