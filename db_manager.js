@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 class DbManager {
     constructor() {
         this.userSchema = new Schema({
-            userName: {
+            firstName: {
+                type: String,
+                required: true,
+                index: true
+            },
+            lastName: {
                 type: String,
                 required: true,
                 index: true

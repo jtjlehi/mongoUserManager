@@ -2,53 +2,63 @@ const dbManager = require('./db_manager');
 
 const localUsers = [
     {
-        userName: 'jared',
+        firstName: 'Jared',
+        lastName: 'Writer of Code',
         email: 'jtjlehi@gmail.com',
         age: 17
     },
     {
-        userName: 'bob',
+        firstName: 'Bob',
+        lastName: 'Painter of Paint',
         email: 'bob.ross@painting.com',
         age: 50
     },
     {
-        userName: 'sam, eater of world',
+        firstName: 'Sam',
+        lastName: 'Eater of world',
         email: 'editor@tomato.com',
         age: 18
     },
     {
-        userName: 'thomas',
+        firstName: 'Thomas',
+        lastName: 'Teacher of Code',
         email: 'thomas@gmail.com',
         age: 17
     },
     {
-        userName: 'curtis',
+        firstName: 'Curtis',
+        lastName: 'of Dalton',
         email: 'cdalton@gmail.com',
         age: 17
     },
     {
-        userName: 'john',
+        firstName: 'John',
+        lastName: 'Looser of Id',
         email: 'john.doe@unknown.com',
         age: 44
     },
     {
-        userName: 'steve',
+        firstName: 'Steve',
+        lastName: 'Player of Minecraft',
         email: 'steve@minecraft.com',
         age: 8
     },
     {
-        userName: 'ryan',
+        firstName: 'ryan',
+        lastName: 'Gamer of games',
         email: 'ryan@woke.com',
         age: 18
     },
     {
-        userName: 'nolen',
+        firstName: 'nolen',
+        lastName: 'of JS',
         email: 'nolenjs@library.com',
         age: 18
     },
     {
-        userName: 'zoe',
-        email: 'valley.girl@af.com',
+        firstName: 'Hacker',
+        lastName: 'Writer of Bugs',
+        email: 'red.hat@hack.com',
         age: 18
     },
 ]

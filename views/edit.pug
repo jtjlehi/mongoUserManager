@@ -3,8 +3,11 @@ extends layouts/layout
 block bodyContent
     form(method="POST", action=`/edit/${id}`)
         div
-            label(for="name") Name
-            input(type="text", autocomplete="name", id="name", name="name", value=userName required)
+            label(for="firstName") First Name
+            input(type="text", autocomplete="firstName", id="firstName", name="firstName", value=firstName,required)
+        div
+            label(for="lastName") last Name
+            input(type="text", autocomplete="lastName", id="lastName", name="lastName", value=lastName required)
         div
             label(for="email") Email
             input(type="email", autocomplete="email", id="email", name="email", value=email required)

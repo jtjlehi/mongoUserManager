@@ -4,7 +4,8 @@ block bodyContent
     h1 User Manager Application
     table
         tr
-            th Name
+            th First Name
+            th Last Name
             th Email
             th Age
             th id
@@ -12,7 +13,8 @@ block bodyContent
             th Delete
         each user in users
             tr
-                td= user.userName
+                td= user.firstName
+                td= user.lastName
                 td= user.email
                 td= user.age
                 td= user.id
