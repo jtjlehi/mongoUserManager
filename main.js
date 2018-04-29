@@ -10,6 +10,7 @@ const add = require('./add_user');
 const addPost = require('./add_post');
 const users = require('./users_page');
 const deleteUser = require('./delete');
+const sortUsers = require('./sort_post');
 // define app
 const app = express();
 // use basic middleware on app.
@@ -25,6 +26,7 @@ add(app);
 addPost(app);
 users(app);
 deleteUser(app);
+sortUsers(app);
 
 app.listen(3000);
 

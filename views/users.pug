@@ -6,7 +6,7 @@ block bodyContent
     form(method="POST", action='/search')
         div
             label(for="searchProperty") Search By
-            select(name="searchProperty", id="searchProperty", autoFocus="firstName")
+            select(name="searchProperty", id="searchProperty", required)
                 option(value="firstName") First Name
                 option(value="lastName") Last Name
                 option(value="email") Email
@@ -19,14 +19,16 @@ block bodyContent
     form(method="POST", action='/sort')
         div
             label(for="sortProperty") SORT By
-            select(name="sortProperty", id="sortProperty", autoFocus="firstName")
+            select(name="sortProperty", id="sortProperty", value=sortProperty, required)
+                option
                 option(value="firstName") First Name
                 option(value="lastName") Last Name
                 option(value="email") Email
                 option(value="age") Age
         div
             label(for="direction") Direction
-            select(name="direction", id="direction", autoFocus="ascending")
+            select(name="direction", id="direction", value=direction)
+                option
                 option(value="ascending") Ascending
                 option(value="descending") Descending
         input(type="submit", value="SORT")
